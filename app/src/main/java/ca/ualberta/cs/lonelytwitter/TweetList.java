@@ -1,6 +1,9 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 /**
  * Created by makepeac on 9/29/16.
@@ -21,10 +24,26 @@ public class TweetList {
     }
 
     public void add(Tweet tweet) {
+        if (tweets.contains(tweet))
+            throw new IllegalArgumentException("Repeated tweet");
         tweets.add(tweet);
     }
 
     public void delete(Tweet tweet) {
         tweets.remove(tweet);
+    }
+
+    public List<Tweet> getTweets() {
+        List<Tweet> result = new ArrayList<Tweet>(tweets);
+        Collections.sort(result, new Comparator<Tweet>() {
+            public int compare(Tweet lhs, Tweet rhs) {
+                return lhs.getDate().compareTo(rhs.getDate());
+            }
+        });
+        return result;
+    }
+
+    public int getCount() {
+        return tweets.size();
     }
 }
