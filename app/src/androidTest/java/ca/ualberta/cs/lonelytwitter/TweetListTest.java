@@ -6,14 +6,24 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created by makepeac on 9/29/16.
+ * Unit tests for TweetList
+ * @author  makepeac
+ * @since   1.4
+ * @see     android.test.ActivityInstrumentationTestCase2
+ * @see     TweetList
  */
 public class TweetListTest extends ActivityInstrumentationTestCase2 {
 
+    /**
+     * Instantiates a new Tweet list test.
+     */
     public TweetListTest(){
         super(ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity.class);
     }
 
+    /**
+     * Test add tweet.
+     */
     public void testAddTweet(){
         TweetList tweets = new TweetList();
         Tweet tweet = new NormalTweet("adding tweet");
@@ -27,6 +37,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         }
     }
 
+    /**
+     * Test delete.
+     */
     public void testDelete(){
         TweetList list = new TweetList();
         Tweet tweet = new NormalTweet("test");
@@ -35,6 +48,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertFalse(list.hasTweet(tweet));
     }
 
+    /**
+     * Test get tweet.
+     */
     public void testGetTweet(){
         TweetList tweets = new TweetList();
         Tweet tweet = new NormalTweet("test");
@@ -43,6 +59,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertEquals(returnedTweet.getMessage(), tweet.getMessage());
     }
 
+    /**
+     * Test get tweets.
+     */
     public void testGetTweets() {
         TweetList tweets = new TweetList();
         String[] expectedOrder = {"1", "2", "3", "4"};
@@ -60,6 +79,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
             assertTrue(results.get(i).getMessage().equals(expectedOrder[i]));
     }
 
+    /**
+     * Test has tweet.
+     */
     public void testHasTweet(){
         TweetList list = new TweetList();
         Tweet tweet = new NormalTweet("test");
@@ -70,6 +92,9 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         assertTrue(list.hasTweet(testTweet));
     }
 
+    /**
+     * Test get count.
+     */
     public void testGetCount() {
         TweetList list = new TweetList();
         assertTrue(list.getCount() == 0);

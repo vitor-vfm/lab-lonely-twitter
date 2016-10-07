@@ -5,13 +5,3 @@
  */
 
 package ca.ualberta.cs.lonelytwitter;
-
-/**
- * Exception for when the tweet exceeds the maximum size allowed for a message
- * @author  watts1
- * @since   1.4
- * @see Tweet
- */
-public class TweetTooLongException extends Exception{
-
-}

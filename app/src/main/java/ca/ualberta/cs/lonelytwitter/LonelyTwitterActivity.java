@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2016. CMPUT 301 University of Alberta. All rights reserved.
+ * You may use, distribute or copy this code under terms and conditions in the
+ * University of Alberta Code of Student Behavior.
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -23,15 +29,41 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * The first and main activity for the Lonely Twitter app.
+ * @since 	1.4
+ * @see Tweet
+ * @see TweetList
+ */
 public class LonelyTwitterActivity extends Activity {
 
+	/**
+	 * The name of the file where the tweet information will be stored
+	 * @see NormalTweet
+	 */
 	private static final String FILENAME = "file.sav";
+
+	/**
+	 * The message for the tweet to be added
+	 */
 	private EditText bodyText;
+	/**
+	 * Tweets from previous dates
+	 */
 	private ListView oldTweetsList;
+
+	/**
+	 * Internal list of Tweets used by the activity
+	 */
 	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+	/**
+	 * Adapter for old tweets list
+	 */
 	private ArrayAdapter<Tweet> adapter;
 	
-	/** Called when the activity is first created. */
+	/**
+	 * Called when the activity is first created.
+	 * */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -56,7 +88,6 @@ public class LonelyTwitterActivity extends Activity {
 
 	@Override
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 		loadFromFile();
 		adapter = new ArrayAdapter<Tweet>(this,
@@ -64,6 +95,11 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+	/**
+	 * Load the tweets from a pre-existent data file. If the file doesn't exist,
+	 * the tweet list is initialized as empty.
+	 * @throws RuntimeException when there is an IOException when reading the file
+	 */
 	private void loadFromFile() {
 		ArrayList<String> tweets = new ArrayList<String>();
 		try {
@@ -81,7 +117,12 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException();
 		}
 	}
-	
+
+	/**
+	 * Load the tweets in the data file with the name specified by <code>FILENAME</code>.
+	 * If the file doesn't exist, the tweet list is initialized as empty.
+	 * @throws RuntimeException when there is an IOException when reading the file or the file can't be opened
+	 */
 	private void saveInFile() {
 		try {
 
